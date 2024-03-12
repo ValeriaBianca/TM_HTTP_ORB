@@ -147,9 +147,9 @@ def get(m_method):
     #result = dict()
     
     if m_method == 'status':
-        result = jsonresponse(0,0,0,0,0,0,"success",None)
+        result = jsonresponse(0,0,0,0,0,0,"success","None")
     else:
-        result = jsonresponse(0,0,0,0,0,0,"fail",None)
+        result = jsonresponse(0,0,0,0,0,0,"fail","None")
     return result
 
 #-- POST
@@ -163,7 +163,7 @@ def post(m_method):
     #check key/value
     if model_id is None:
         TRIMessage('model_id is not set')
-        result=jsonresponse(0,0,0,0,0,0,"fail",None)
+        result=jsonresponse(0,0,0,0,0,0,"fail","None")
         return result
     
     #-- Saving image on pc
@@ -281,7 +281,7 @@ def post(m_method):
         H2, _ = cv2.findHomography(obj, output, cv2.RANSAC)
     except:
         TRIMessage("Not enough matches or zero matches found!")
-        result = jsonresponse(0,0,0,0,"Not enough matches or zero matches found!",0,"fail",None)
+        result = jsonresponse(0,0,0,0,"Not enough matches or zero matches found!",0,"fail","None")
         return result #with this return the server goes back to idle state if the error is thrown
     
     #-- Get the corners from the training image
@@ -353,7 +353,7 @@ def post(m_method):
     # Classification [Can be implemented and for this to work the External Classification vision task has to be selected inside the vision job node]
     if m_method == 'CLS':
         TRIMessage("No Classification method implemented, yet")
-        result = jsonresponse(0,0,0,0,0,0,"fail",None)
+        result = jsonresponse(0,0,0,0,0,0,"fail","None")
         
     # Detection
     elif m_method == 'DET':
@@ -384,7 +384,7 @@ def post(m_method):
             
     # no method
     else:
-        result = jsonresponse(0,0,0,0,"No HTTP method",0,"fail",None)
+        result = jsonresponse(0,0,0,0,"No HTTP method",0,"fail","None")
         with open('json.txt', 'a') as f:
             f.write('\n')
             f.write((str(result)))
